@@ -1,0 +1,99 @@
+      body {
+        font-family: "Hanuman", serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #003366;
+        color: white;
+        padding: 10px 20px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 60px;
+        margin-right: 15px;
+      }
+
+      .title {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      .main-title {
+        position: absolute;
+        left: 44%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 28px;
+      }
+
+      .navbar-custom {
+        background-color: #003366;
+      }
+
+      .navbar-custom .nav-link {
+        color: white;
+        margin-right: 10px;
+        text-decoration: none;
+      }
+
+      .navbar-custom .nav-link:hover {
+        text-decoration: underline;
+      }
+      
+      body {
+        font-family: "Hanuman", serif;
+        background-color: #f8f9fa;
+      }
+
+      h2 {
+        display: flex;
+        justify-content: left;
+        color: #003366;
+        font-weight: bold;
+        margin-bottom: 25px;
+      }
+
+      h3 {
+        display: flex;
+        justify-content: center;
+        color: #003366;
+        font-weight: bold;
+        margin-bottom: 25px;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      }
+
+      /* Team section styles */
+      .team-member img {
+        justify-content: center;
+        width: 100px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 5%;
+        border: 2px solid #003366;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .team-member img:hover {
+        transform: scale(1.05);
+      }

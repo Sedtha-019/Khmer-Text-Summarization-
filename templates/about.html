@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <title>About Us - Summarize KH</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanuman:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../static/style.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="../static/about.css"
+      rel="stylesheet"
+    />
+    
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img
+          src="{{ url_for('static', filename='image/ams.png') }}"
+          alt="AMS logo"
+        />
+        <div class="title">
+          ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្ត និងស្ថិតិ<br />
+          Department of Applied Mathematics and Statistics
+        </div>
+        <div class="main-title">SUMMARIZE KH<br></div>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse show d-flex justify-content-between align-items-center">
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex flex-wrap">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('how_to_use') }}">How to Use</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    </header>
+    <div class="container mt-4">
+      <h2>អំពីពួកយើង (About Us)</h2>
+      <p>
+        ប្រព័ន្ធនេះត្រូវបានបង្កើតឡើងដើម្បីជួយសង្ខេបអត្ថបទជាភាសាខ្មែរ។
+        វាប្រើបច្ចេកវិទ្យា AI ដើម្បីយល់និងបង្ហាញចំណុចសំខាន់ៗនៃអត្ថបទ។
+      </p>
+    </div>
+  </body>
+</html>
