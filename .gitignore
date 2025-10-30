@@ -1,0 +1,38 @@
+# Create .gitignore file
+echo "# Python
+Project>cache/
+cache/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Model files (often too large)
+*.h5
+*.pkl
+*.pth
+*.bin
+*.onnx
+models/
+checkpoints/
+
+# Data files
+*.csv
+*.json
+data/
+datasets/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db" > .gitignore
