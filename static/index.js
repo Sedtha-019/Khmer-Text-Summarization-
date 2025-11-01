@@ -2,6 +2,11 @@ const inputDiv = document.getElementById("input");
 const output1Div = document.getElementById("output1");
 const output2Div = document.getElementById("output2");
 
+// ✅ Auto API selection
+const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://127.0.0.1:5000/summarize"
+  : "https://YOUR-RENDER-URL.onrender.com/summarize";  // TODO: change to your URL
+
 // Clear input and outputs
 function clearInput() {
   inputDiv.innerHTML = "";
@@ -24,7 +29,7 @@ function copyOutput(outputId) {
   navigator.clipboard.writeText(text).then(() => alert("លទ្ធផលត្រូវបានចម្លង!"));
 }
 
-// Summarize button
+// ✅ Summarize function
 async function summarizeText() {
   const text = inputDiv.textContent.trim();
   if (!text) return alert("សូមបញ្ចូលអត្ថបទសង្ខេប។");
@@ -36,11 +41,12 @@ async function summarizeText() {
   output2Div.innerHTML = "កំពុងសង្ខេប...";
 
   try {
-    const response = await fetch("/summarize", {
+    const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: text, models: [model1, model2] }),
     });
+
     const data = await response.json();
 
     if (data.results) {
@@ -51,6 +57,8 @@ async function summarizeText() {
     }
   } catch (err) {
     console.error(err);
+    output1Div.innerText = "កំហុសក្នុងការតភ្ជាប់";
+    output2Div.innerText = "កំពុងព្យាយាមឡើងវិញ...";
     alert("មានបញ្ហាក្នុងការសង្ខេប។ សូមព្យាយាមម្ដងទៀត។");
   }
 }
