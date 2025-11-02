@@ -37,7 +37,7 @@
           <div class="collapse navbar-collapse show d-flex justify-content-between align-items-center">
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex flex-wrap">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                <a class="nav-link" href="{{ url_for('landing') }}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('how_to_use') }}">How to Use</a>
@@ -106,9 +106,14 @@
             <button class="icon-btn" onclick="copyOutput('output2')" title="ចម្លងលទ្ធផល">
               <i class="fas fa-copy"></i>
             </button>
+            
           </div>
         </div>
       </section>
+      <a href="{{ url_for('features') }}" class="btn-back-features" style="margin-top: 4rem;">
+                <i class="fas fa-arrow-left"></i>
+                Back to Choose Tools
+            </a>
     </main>
 
     <!-- JS -->

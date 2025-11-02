@@ -1,37 +1,37 @@
 body {
-  font-family: "Hanuman", serif;
-  background-color: #ffffff;
-  margin: 0;
-  padding: 0;
+font-family: "Hanuman", serif;
+background-color: #f8f9fa;
+margin: 0;
+padding: 0;
 }
 
 header {
-  background-color: #003366;
-  color: white;
-  padding: 10px 20px;
+background-color: #003366;
+color: white;
+padding: 10px 20px;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
+display: flex;
+align-items: center;
 }
 
 .logo img {
-  height: 60px;
-  margin-right: 15px;
+height: 60px;
+margin-right: 15px;
 }
 
 .title {
-  font-size: 16px;
-  line-height: 1.4;
+font-size: 16px;
+line-height: 1.4;
 }
 
 .main-title {
-  position: absolute;
-  left: 44%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 28px;
+position: absolute;
+left: 44%;
+transform: translateX(-50%);
+text-align: center;
+font-size: 28px;
 }
 
 .navbar-custom {
@@ -216,6 +216,38 @@ header {
   font-weight: bold;
   color: #10185b;
   animation: pulse 1.5s infinite ease-in-out;
+}
+.navbar-custom .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #42a5f5 !important;
+}
+
+.navbar-custom .nav-link.active {
+    color: #42a5f5 !important;
+}
+.btn-back-features {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+color: white;
+padding: 1rem 2rem;
+border-radius: 50px;
+text-decoration: none;
+font-weight: 600;
+transition: all 0.3s ease;
+margin-top: 1rem;
+box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.btn-back-features:hover {
+background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+color: white;
 }
 
 @keyframes pulse {
