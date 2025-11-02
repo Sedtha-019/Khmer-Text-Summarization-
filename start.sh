@@ -1,2 +1,3 @@
 #!/bin/bash
-gunicorn --bind 0.0.0.0:10000 app:app
+exec gunicorn -w 1 -b 0.0.0.0:10000 app:app --timeout 300
+
