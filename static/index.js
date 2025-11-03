@@ -5,7 +5,8 @@ const output2Div = document.getElementById("output2");
 // ✅ Auto API selection
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://127.0.0.1:5000/summarize"
-  : "https://khmer-text-summarization-y7gh.onrender.com/summarize";  // TODO: change to your URL
+  : "http://18.141.8.123:5000/summarize";  // TODO: change to your URL
+  // TODO: change to your URL
 
 // Clear input and outputs
 function clearInput() {
