@@ -7,6 +7,7 @@ from transformers import (
     MBartForConditionalGeneration, MBart50Tokenizer,
     MT5ForConditionalGeneration, T5Tokenizer
 )
+import os
 
 # ================== Config ==================
 load_dotenv()
@@ -21,7 +22,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MODELS = {
     "model1": {
         "name": "Model 1 - Khmer MBart Summarization",
-        "repo": "sedtha/mBart-50-large_LoRa_kh_sumerize",   # mBART model
+        "repo": "sedtha/mBart-50-large_LoRa_kh_sumerize",   # mBART model with LoRA
         "type": "mbart",
         "model": None,
         "tokenizer": None
@@ -65,7 +66,6 @@ def load_model(model_key):
                     cache_dir="./cache"
                 ).to(device)
 
-
             elif model_info["type"] == "mt5":
                 tokenizer = T5Tokenizer.from_pretrained(model_info["repo"], cache_dir="./cache")
                 model = MT5ForConditionalGeneration.from_pretrained(model_info["repo"], cache_dir="./cache").to(device)
@@ -104,15 +104,28 @@ def summarize_text(input_text, model_key):
 
         # Generate summary
         with torch.no_grad():
-            summary_ids = model.generate(
-                **inputs,
-                num_beams=4,
-                max_new_tokens=125,
-                early_stopping=True
-            )
+            if model_type == "mbart":
+                summary_ids = model.generate(
+                    **inputs,
+                    num_beams=4,
+                    max_new_tokens=125,
+                    early_stopping=True
+                )
+            else:  # mt5
+                summary_ids = model.generate(
+                    **inputs,
+                    num_beams=5,
+                    max_new_tokens=125,
+                    early_stopping=True
+                )
 
         # Decode output
         summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+        # Clean text: remove after last full stop
+        last_index = summary.rfind("។")
+        if last_index != -1:
+            summary = summary[:last_index + 1]
+
         return summary.strip() or "មិនអាចសង្ខេបបានទេ។"
 
     except Exception as e:
@@ -122,22 +135,18 @@ def summarize_text(input_text, model_key):
 # ================== Routes ==================
 @app.route('/')
 def landing():
-    """Landing page - first page users see"""
     return render_template('landing.html')
 
 @app.route('/features')
 def features():
-    """Features selection page"""
     return render_template('features.html')
 
 @app.route('/summarizer')
 def index():
-    """Khmer Summarization tool"""
     return render_template('index.html', models=MODELS)
 
 @app.route('/spellchecker')
 def spellchecker():
-    """Khmer Spell Checker tool (placeholder)"""
     return render_template('spellchecker.html')
 
 @app.route('/how_to_use')
@@ -173,10 +182,7 @@ def summarize():
 
 @app.route('/get_models', methods=['GET'])
 def get_models():
-    """Return list of models to frontend"""
-    return jsonify({
-        key: {"name": value["name"]} for key, value in MODELS.items()
-    })
+    return jsonify({key: {"name": value["name"]} for key, value in MODELS.items()})
 
 # ================== Run ==================
 if __name__ == '__main__':
