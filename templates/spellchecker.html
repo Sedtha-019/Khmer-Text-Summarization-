@@ -10,40 +10,138 @@
     <link href="../static/style.css" rel="stylesheet">
     <link href="../static/spellchecker.css" rel="stylesheet">
 </head>
+<style>
+        /* Language Switcher Container */
+        .language-switcher-container {
+            position: absolute; 
+            top: 100px;
+            right: 16px;
+            z-index: 1000;
+        }
+
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px;
+        }
+
+        .language-switcher i {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #6b7280;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Hanuman', serif;
+            border-radius: 6px;
+        }
+
+        .lang-btn:hover {
+            color: #2563eb;
+        }
+
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .lang-btn.active:hover {
+            color: white;
+        }
+
+        /* Hide inactive language content */
+        [data-lang] {
+            display: none;
+        }
+
+        [data-lang].active {
+            display: inline;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher-container {
+                top: 12px;
+                right: 12px;
+            }
+
+            .language-switcher {
+                padding: 6px 10px;
+            }
+
+            .lang-btn {
+                padding: 4px 10px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
 <body>
     <header>
       <div class="logo">
         <img
-          src="{{ url_for('static', filename='image/ams.png') }}"
+          src="{{ url_for('static', filename='image/rac.png') }}"
           alt="AMS logo"
         />
         <div class="title">
-          ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្ត និងស្ថិតិ<br />
-          Department of Applied Mathematics and Statistics
+          រាជបណ្ឌិត្យសភាកម្ពុជា<br />
+          Royal Academy of Cambodia
         </div>
-        <div class="main-title">SUMMARIZE KH<br /></div>
+        <div class="main-title">KHMERE AI TOOL<br /></div>
       </div>
       <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
           <div class="collapse navbar-collapse show d-flex justify-content-between align-items-center">
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex flex-wrap">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('landing') }}">Home</a>
+                <a class="nav-link" href="{{ url_for('landing') }}">
+                  <span data-lang="km" class="active">ទំព័រដើម</span>
+                  <span data-lang="en">Home</span>
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('how_to_use') }}">How to Use</a>
+                <a class="nav-link" href="{{ url_for('how_to_use') }}">
+                  <span data-lang="km" class="active">របៀបប្រើប្រាស់</span>
+                  <span data-lang="en">How to Use</span>
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                <a class="nav-link" href="{{ url_for('about') }}">
+                  <span data-lang="km" class="active">អំពីយើង</span>
+                  <span data-lang="en">About Us</span>
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                <a class="nav-link" href="{{ url_for('contact') }}">
+                  <span data-lang="km" class="active">ទំនាក់ទំនង</span>
+                  <span data-lang="en">Contact</span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    <div class="language-switcher-container py-2">
+      <div class="container d-flex justify-content-end">
+        <div class="language-switcher d-inline-flex align-items-center gap-2">
+          <i class="fas fa-globe"></i>
+          <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+          <button class="lang-btn" onclick="switchLanguage('km')">ភាសាខ្មែរ</button>
+        </div>
+      </div>
+    </div>
 
     <main class="translator container my-4">
         <!-- Input Section -->
@@ -80,10 +178,11 @@
         </section>
         
     </main>
-<div class="back-button-container">
-            <a href="{{ url_for('features') }}" class="btn-back-features">
+    <div class="back-button-container">
+          <a href="{{ url_for('features') }}" class="btn-back-features" style="margin-top: 4rem;">
+        <span data-lang="en" class="active">Open Spell Checker Interface</span>
+                    <span data-lang="km">ត្រឡប់ទៅក្រោយ</span>
                 <i class="fas fa-arrow-left"></i>
-                Back to Choose Tools
             </a>
         </div>
 

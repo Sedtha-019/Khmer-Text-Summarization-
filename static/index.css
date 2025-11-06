@@ -255,3 +255,92 @@ color: white;
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
   100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
 }
+.output-box {
+  position: relative;
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.timer-text {
+  position: absolute;
+  bottom: 8px;
+  left: 80px; /* adjust near copy button */
+  color: #555;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Language Switcher Container */
+.language-switcher-container {
+    position: absolute; 
+    top: 100px;
+    right: 16px;
+    z-index: 1000;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e5e7eb;
+    padding: 8px 12px;
+}
+
+.language-switcher i {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Hanuman', serif;
+    border-radius: 6px;
+}
+
+.lang-btn:hover {
+    color: #2563eb;
+}
+
+.lang-btn.active {
+    background: #2563eb;
+    color: white;
+}
+
+.lang-btn.active:hover {
+    color: white;
+}
+
+/* Hide inactive language content */
+[data-lang] {
+    display: none;
+}
+
+[data-lang].active {
+    display: inline;
+}
+.btn-upload {
+  bottom: 10px;
+  right: 10px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-upload:hover {
+  background-color: #002244;
+}

@@ -70,3 +70,67 @@ inputDiv.addEventListener("input", () => {
         outputDiv.innerHTML = "";
     }
 });
+// Language Switcher JavaScript
+let currentLang = 'en';
+
+function switchLanguage(lang) {
+    if (currentLang === lang) return;
+    
+    currentLang = lang;
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Remove active class from all language elements
+    document.querySelectorAll('[data-lang]').forEach(el => {
+        el.classList.remove('active');
+    });
+    
+    // Add active class to selected language elements
+    document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+        el.classList.add('active');
+    });
+    
+    // Update button states
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.classList.remove('active');
+    });
+    
+    // Set active button
+    event.currentTarget.classList.add('active');
+    
+    // Save preference to localStorage
+    try {
+        localStorage.setItem('preferredLanguage', lang);
+    } catch (e) {
+        console.log('Unable to save language preference');
+    }
+}
+
+// Load saved language preference on page load
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang && (savedLang === 'km' || savedLang === 'en')) {
+            currentLang = savedLang;
+            
+            // Update content
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll(`[data-lang="${savedLang}"]`).forEach(el => {
+                el.classList.add('active');
+            });
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach((btn, index) => {
+                btn.classList.remove('active');
+                if ((savedLang === 'en' && index === 0) || (savedLang === 'km' && index === 1)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    } catch (e) {
+        console.log('Unable to load language preference');
+    }
+});
