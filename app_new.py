@@ -1,3 +1,17 @@
+import os
+import sys
+sys.path.append(r"D:\Program\code\python\KTST\Web_interface_KhmerTextSummarization (2)\Web_interface_KhmerTextSummarization\akara\akara-python")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.extend([
+    current_dir,
+    os.path.join(current_dir, 'app')
+])
+
+try:
+    from app.services.pipeline import correct_paragraph
+except ImportError:
+    from services.pipeline import correct_paragraph
+    
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 import torch
@@ -7,8 +21,17 @@ from transformers import (
     MBartForConditionalGeneration, MBart50Tokenizer,
     MT5ForConditionalGeneration, T5Tokenizer
 )
-import os
 
+# ================== Akara Spell Checker ==================
+
+
+from akara.spell_checker import SpellChecker
+
+# Path to your Akara model
+AKARA_MODEL_PATH = os.path.join(
+    os.getcwd(), "akara", "model.xml"
+)
+checker = SpellChecker(model_path=r"D:\Program\code\python\KTST\Web_interface_KhmerTextSummarization (2)\Web_interface_KhmerTextSummarization\akara\akara-python\akara\model.xml")
 # ================== Config ==================
 load_dotenv()
 app = Flask(__name__)
@@ -148,7 +171,21 @@ def index():
 @app.route('/spellchecker')
 def spellchecker():
     return render_template('spellchecker.html')
+@app.route('/spellcheck', methods=['POST'])
+def spellcheck():
+    """Spell check using Akara"""
+    data = request.get_json()
+    input_text = data.get("text", "").strip()
+    if not input_text:
+        return jsonify({"error": "សូមបញ្ចូលអត្ថបទសិន។"}), 400
 
+    try:
+        suggestions = correct_paragraph(input_text)
+        return jsonify({"input": input_text, "corrected_text": suggestions})
+    except Exception as e:
+        print(f"⚠️ Spell check error: {e}")
+        return jsonify({"error": str(e)}), 500
+    
 @app.route('/how_to_use')
 def how_to_use():
     return render_template('how_to_use.html')
