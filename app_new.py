@@ -25,13 +25,13 @@ from transformers import (
 # ================== Akara Spell Checker ==================
 
 
-from akara.spell_checker import SpellChecker
+# from akara.spell_checker import SpellChecker
 
 # Path to your Akara model
-AKARA_MODEL_PATH = os.path.join(
-    os.getcwd(), "akara", "model.xml"
-)
-checker = SpellChecker(model_path=r"D:\Program\code\python\KTST\Web_interface_KhmerTextSummarization (2)\Web_interface_KhmerTextSummarization\akara\akara-python\akara\model.xml")
+# AKARA_MODEL_PATH = os.path.join(
+#     os.getcwd(), "akara", "model.xml"
+# )
+# checker = SpellChecker(model_path=r"D:\Program\code\python\KTST\Web_interface_KhmerTextSummarization (2)\Web_interface_KhmerTextSummarization\akara\akara-python\akara\model.xml")
 # ================== Config ==================
 load_dotenv()
 app = Flask(__name__)
@@ -224,3 +224,4 @@ def get_models():
 # ================== Run ==================
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
+
