@@ -9,7 +9,7 @@ let timerInterval1, timerInterval2;
 // Auto-select API based on host
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://127.0.0.1:5000/summarize"
-  : "http://18.141.8.123:5000/summarize";
+  : "http://0.0.0.0:5000/summarize";
 
 // Clear input and outputs
 function clearInput() {
@@ -168,3 +168,27 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Unable to load language preference');
     }
 });
+ function triggerFileInput() {
+    document.getElementById('file-input').click();
+  }
+
+  // Handle file after it is selected
+  function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      const content = e.target.result;
+      console.log('File content:', content); // You can replace this with your logic
+      alert('File uploaded successfully! Check console for content.');
+    };
+
+    // Read file based on type
+    if (file.type === "application/pdf") {
+      reader.readAsArrayBuffer(file); // For PDF you may need a library like PDF.js to parse
+    } else {
+      reader.readAsText(file); // For .txt and .docx (simple text)
+    }
+  }

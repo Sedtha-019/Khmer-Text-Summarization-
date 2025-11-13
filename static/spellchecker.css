@@ -31,7 +31,7 @@ line-height: 1.4;
 
 .main-title {
 position: absolute;
-left: 44%;
+left: 50%;
 transform: translateX(-50%);
 text-align: center;
 font-size: 28px;
